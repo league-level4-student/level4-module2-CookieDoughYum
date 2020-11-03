@@ -1,5 +1,9 @@
 package StringMethods;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -32,13 +36,19 @@ public class StringMethods {
 
 	// Given Strings s1 and s2, return the longer String
 	public static String longerString(String s1, String s2) {
-		return null;
+		if(s1.length()>s2.length()) {
+			return s1;
+		}
+		return s2;
 	}
 
 	
 	// if String s contains the word "underscores", change all of the spaces to underscores
 	public static String formatSpaces(String s) {
-		return null;
+		if(s.contains("underscores")) {
+			s=s.replace(" ", "_");
+		}
+		return s;
 	}
 
 	
@@ -46,24 +56,68 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-		return null;
+		//trim 
+		s1.trim();
+		s2.trim();
+		s3.trim();
+		//separate the last names 
+		ArrayList<String> strArray=new ArrayList<String>();
+		strArray.add(s1);
+		s1.split(" ");
+		
+		ArrayList<String> strArray1=new ArrayList<String>();
+		strArray1.add(s2);
+		s2.split(" ");
+		
+		ArrayList<String> strArray2=new ArrayList<String>();
+		strArray2.add(s3);
+		s3.split(" ");
+		//use compareTo to figure out the order 
+		if(strArray.get(1).compareTo(strArray1.get(1))>0 && strArray.get(1).compareTo(strArray2.get(1))>0) {
+			return s1;
+		}
+		else if(strArray1.get(1).compareTo(strArray.get(1))>0 && strArray1.get(1).compareTo(strArray2.get(1))>0) {
+			return s2;
+		}
+		//return FULL name of the first person 
+		return s3;
 	}
 	
 	
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		return 0;
+		ArrayList<char> a=new ArrayList<char>();
+		for(int i=0; i<a.length; i++) {
+			
+		}
 	}
 	
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		return 0;
+		int times=0;
+		for(int i=0; i<s.length(); i++) {
+			if(s.contains(substring)) {
+				times+=1;
+			}
+		}
+		return times;
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-		return null;
+		BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+		String str;
+		try {
+			str = buff.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		key=str.charAt(4);
+		byte bValue = (byte)key;
+		Utilities.encrypt(s.getBytes(), bValue);
+		return s;
 	}
 
 	// Call Utilities.decrypt to decrypt the cyphertext
