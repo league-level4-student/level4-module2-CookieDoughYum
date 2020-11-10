@@ -57,39 +57,51 @@ public class StringMethods {
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
 		//trim 
-		s1.trim();
-		s2.trim();
-		s3.trim();
+		s1=s1.trim();
+		s2=s2.trim();
+		s3=s3.trim();
+		
+		String OGs1=s1;
+		String OGs2=s2;
+		String OGs3=s3;
 		//separate the last names 
-		ArrayList<String> strArray=new ArrayList<String>();
-		strArray.add(s1);
-		s1.split(" ");
+		String[] strArray=s1.split(" ");
+		//System.out.println(strArray);
 		
-		ArrayList<String> strArray1=new ArrayList<String>();
-		strArray1.add(s2);
-		s2.split(" ");
+		String[] strArray1=s2.split(" ");
+		//System.out.println(strArray[1]);
 		
-		ArrayList<String> strArray2=new ArrayList<String>();
-		strArray2.add(s3);
-		s3.split(" ");
+		String[] strArray2=s3.split(" ");
+		//System.out.println(strArray2.size());
 		//use compareTo to figure out the order 
-		if(strArray.get(1).compareTo(strArray1.get(1))>0 && strArray.get(1).compareTo(strArray2.get(1))>0) {
-			return s1;
+		if(strArray[1].compareTo(strArray1[1])<0 && strArray[1].compareTo(strArray2[1])<0) {
+			return OGs1;
 		}
-		else if(strArray1.get(1).compareTo(strArray.get(1))>0 && strArray1.get(1).compareTo(strArray2.get(1))>0) {
-			return s2;
+		else if(strArray1[1].compareTo(strArray[1])<0 && strArray1[1].compareTo(strArray2[1])<0) {
+			return OGs2;
 		}
 		//return FULL name of the first person 
-		return s3;
+		return OGs3;
 	}
 	
 	
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		ArrayList<char> a=new ArrayList<char>();
-		for(int i=0; i<a.length; i++) {
-			
+		ArrayList<Character> s1=new ArrayList<Character>(s.length());//s.length doesn't work because it is just creating an array list with the size of s.length.
+		ArrayList<Integer> s2=new ArrayList<Integer>(s1.size());
+		for(int i=0; i<s.length(); i++) {
+			s1.add(s.indexOf(i));
 		}
+		for(int i=0; i<s1.size(); i++) {
+			if(Character.isDigit(s1.get(i))) {
+		    s2.add(Character.getNumericValue(s1.get(i)));
+			}
+		}
+		int constantSum=0;
+		for(int i=0; i<s2.size(); i++) {
+			constantSum+=s2.get(i);
+		}
+		return constantSum;
 	}
 	
 	
