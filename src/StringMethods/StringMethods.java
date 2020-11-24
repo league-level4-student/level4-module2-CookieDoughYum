@@ -186,11 +186,44 @@ public class StringMethods {
 	}
 
 
+	
+	/*
+	aba ba
+	
+	ab aba
+	*/
+	
 	// Return true if String s is a palindrome
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
-		return true;
+		String v="";
+		char empty='';
+		for(int i=0; i<s.length(); i++) {
+			if(!Character.isLetter(s.charAt(i))) {
+				s.replace(s.charAt(i), empty);
+			}
+		}
+		int t=0;
+		//int characters = 0;
+		for(int i=s.length()-1; i>=0; i--) {
+			v+=s.charAt(i);
+		}
+		for(int i=0; i<s.length(); i++) {
+				   if(s.charAt(i)==v.charAt(i)) {
+					  t +=1;
+				   }
+			   }
+		}
+		
+		System.out.println(s + " " + v);
+		if(t==s.length()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 	
 }
