@@ -197,36 +197,40 @@ public class StringMethods {
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
-		String v="";
-		char empty='';
+		
+		String formatted =  "";
+
 		for(int i=0; i<s.length(); i++) {
-			if(!Character.isLetter(s.charAt(i))) {
-				s.replace(s.charAt(i), empty);
+			if(Character.isLetter(s.charAt(i))) {
+				formatted += s.charAt(i);
 			}
 		}
+		formatted=formatted.toLowerCase();
 		int t=0;
+		String reversed="";
 		//int characters = 0;
-		for(int i=s.length()-1; i>=0; i--) {
-			v+=s.charAt(i);
+		for(int i=formatted.length()-1; i>=0; i--) {
+			reversed+=formatted.charAt(i);
 		}
-		for(int i=0; i<s.length(); i++) {
-				   if(s.charAt(i)==v.charAt(i)) {
+		for(int i=0; i<formatted.length(); i++) {
+				   if(formatted.charAt(i)==reversed.charAt(i)) {
 					  t +=1;
 				   }
 			   }
-		}
 		
-		System.out.println(s + " " + v);
-		if(t==s.length()) {
+		
+		System.out.println(formatted + " " + reversed);
+	if(t==formatted.length()) {
 			return true;
 		}
 		else {
 			return false;
 		}
+}
 		
 	}
 	
-}
+
 
 class Utilities {
 	// This basic encryption scheme is called single-byte xor. It takes a single
